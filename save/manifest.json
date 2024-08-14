@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Manager",
+  "version": "1.0",
+  "description": "Save and load your current set of tabs",
+  "permissions": ["tabs", "storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "tabmanager@example.com"
+    }
+  }
+}
