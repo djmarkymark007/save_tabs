@@ -10,6 +10,17 @@ import (
 
 //TODO(Mark): remove the web dev firewall rule from windows defender
 
+//TODO(Mark): setup github
+// docker file for go program
+// docker file for postgresql database
+// when browser is open check server is alive
+// work on ui
+// add shortcut key
+// add shortcut key for when finished read web page
+// set up database files
+// figure out how tags should work
+// test on diffrent computer
+
 type Tab struct {
 	URL   string `json:"url"`
 	Title string `json:"title"`
