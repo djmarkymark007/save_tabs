@@ -31,7 +31,7 @@ var testStuff = saveJson{
 	},
 }
 
-func postSaveTabs(w http.ResponseWriter, r *http.Request) {
+func PostSaveTabs(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Post")
 	saveData := saveJson{}
 	decoder := json.NewDecoder(r.Body)
@@ -44,7 +44,7 @@ func postSaveTabs(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, `{"id":"1"}`)
 }
 
-func getSaveTabs(w http.ResponseWriter, r *http.Request) {
+func GetSaveTabs(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("get save tab")
 	data, err := json.Marshal(testStuff)
 	if err != nil {
