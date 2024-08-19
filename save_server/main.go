@@ -7,8 +7,6 @@ import (
 	tabs "github.com/djmarkymark007/save_tabs/save_server/internal/save_all_tabs"
 )
 
-//TODO(Mark): remove the web dev firewall rule from windows defender
-
 //TODO(Mark): setup github
 // docker file for go program
 // docker file for postgresql database
