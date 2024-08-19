@@ -6,6 +6,10 @@
   "permissions": ["tabs", "storage"],
   "host_permissions": ["<all_urls>"],
   "action": {
+    "default_icon": "assets/ok.png",
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "96": "assets/ok.png"
   }
 }
