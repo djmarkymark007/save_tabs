@@ -1,0 +1,2 @@
+read this when making final icons
+    https://developer.chrome.com/docs/webstore/images#icons

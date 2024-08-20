@@ -31,6 +31,20 @@ const API_BASE_URL = 'http://localhost/';
 document.getElementById('saveButton').addEventListener('click', saveTabs);
 document.getElementById('loadButton').addEventListener('click', loadTabs);
 
+
+//TODO(Mark): put this with a check to the server status 
+//TODO(Mark): have server refresh button that check the server status again
+document.getElementById('changeIcon').addEventListener('click', changeIcon);
+let isDefaultIcon = true;
+async function changeIcon() {
+  isDefaultIcon = !isDefaultIcon;
+  chrome.action.setIcon({
+    path: {
+      96: isDefaultIcon ? "assets/ok.png" : "assets/fail.png"
+    }
+  });
+};
+
 async function saveTabs() {
   console.log("starting")
   const browserAPI = chrome || browser;

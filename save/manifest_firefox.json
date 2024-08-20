@@ -6,11 +6,15 @@
   "permissions": ["tabs", "storage"],
   "host_permissions": ["<all_urls>"],
   "action": {
+    "default_icon": "assets/ok.png",
     "default_popup": "popup.html"
   },
   "browser_specific_settings": {
     "gecko": {
       "id": "tabmanager@example.com"
     }
+  },
+  "icons": {
+    "96": "assets/ok.png"
   }
 }
