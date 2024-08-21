@@ -49,30 +49,45 @@ chrome.windows.onFocusChanged.addListener((windowId) => {
 let button_names = [];
 let num_buttons = 0;
 
-async function render() {
+function render() {
   // do i like this
-  chrome.storage.local.get(["button_names", "num_buttons"], result => {
-    console.log(result)
-    const status = document.getElementById('status');
-    status.textContent = "clicked"
-    button_names = result["button_names"]
-    console.log(result)
-    console.log(result["num_buttons"])
-    console.log(typeof result["num_buttons"])
+  try {
+    chrome.storage.local.get(["button_names", "num_buttons"], result => {
+      console.log(Object.keys(result))
+      console.log(Object.keys(result).length)
+      if (Object.keys(result).length === 0 && result.constructor === Object) {
+        button_names = []
+        num_buttons = 0
+      }
+      else {
+        console.log(result)
+        const status = document.getElementById('status');
+        status.textContent = "clicked"
+        button_names = result["button_names"]
+        console.log(result)
+        console.log(result["num_buttons"])
+        console.log(typeof result["num_buttons"])
 
-    num_buttons = result["num_buttons"]
+        num_buttons = result["num_buttons"]
 
-    for (tag_name of result["button_names"]) {
-      status.textContent = "button"
-      box = document.getElementById('tag-contanier')    
-      div = document.createElement('div')
-      div.classList.add('inner')
-      newButton = document.createElement('button')
-      newButton.textContent = tag_name 
-      div.appendChild(newButton)
-      box.appendChild(div)
-    }
-  })
+        for (tag_name of result["button_names"]) {
+          status.textContent = "button"
+          box = document.getElementById('tag-contanier')    
+          div = document.createElement('div')
+          div.classList.add('inner')
+          newButton = document.createElement('button')
+          newButton.textContent = tag_name 
+          div.appendChild(newButton)
+          box.appendChild(div)
+        }
+      }
+    })
+  }
+  catch (error) {
+    button_names = []
+    num_buttons = 0
+  }
+
 };
 
 document.getElementById("clear").addEventListener('click', clearStorage)
