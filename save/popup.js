@@ -31,21 +31,6 @@ const API_BASE_URL = 'http://localhost/';
 document.getElementById('saveButton').addEventListener('click', saveTabs);
 document.getElementById('loadButton').addEventListener('click', loadTabs);
 
-
-// startup 
-chrome.runtime.onStartup.addListener(() => {
-  // Your code here
-  console.log("Browser started!");
-});
-
-chrome.windows.onFocusChanged.addListener((windowId) => {
-  if (windowId !== chrome.windows.WINDOW_ID_NONE) {
-    // A window has come into focus
-    console.log("Window focused:", windowId);
-    // Your code here
-  }
-});
-
 let button_names = [];
 let num_buttons = 0;
 
