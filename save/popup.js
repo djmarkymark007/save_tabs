@@ -32,6 +32,76 @@ document.getElementById('saveButton').addEventListener('click', saveTabs);
 document.getElementById('loadButton').addEventListener('click', loadTabs);
 
 
+// startup 
+chrome.runtime.onStartup.addListener(() => {
+  // Your code here
+  console.log("Browser started!");
+});
+
+chrome.windows.onFocusChanged.addListener((windowId) => {
+  if (windowId !== chrome.windows.WINDOW_ID_NONE) {
+    // A window has come into focus
+    console.log("Window focused:", windowId);
+    // Your code here
+  }
+});
+
+let button_names = [];
+let num_buttons = 0;
+
+async function render() {
+  // do i like this
+  chrome.storage.local.get(["button_names", "num_buttons"], result => {
+    console.log(result)
+    const status = document.getElementById('status');
+    status.textContent = "clicked"
+    button_names = result["button_names"]
+    console.log(result)
+    console.log(result["num_buttons"])
+    console.log(typeof result["num_buttons"])
+
+    num_buttons = result["num_buttons"]
+
+    for (tag_name of result["button_names"]) {
+      status.textContent = "button"
+      box = document.getElementById('tag-contanier')    
+      div = document.createElement('div')
+      div.classList.add('inner')
+      newButton = document.createElement('button')
+      newButton.textContent = tag_name 
+      div.appendChild(newButton)
+      box.appendChild(div)
+    }
+  })
+};
+
+document.getElementById("clear").addEventListener('click', clearStorage)
+function clearStorage() {
+  chrome.storage.local.set({"button_names": [], "num_buttons": 0})
+  button_names = []
+  num_buttons = 0
+}
+
+
+document.getElementById('add').addEventListener('click', add);
+
+
+async function add() {
+  box = document.getElementById('tag-contanier')
+  tag_name = document.getElementById("tag_input")
+  div = document.createElement('div')
+  div.classList.add('inner')
+  newButton = document.createElement('button')
+  button_names.push(num_buttons + ') ' + tag_name.value)
+  newButton.textContent = num_buttons + ") " + tag_name.value
+  div.appendChild(newButton)
+  box.appendChild(div)
+  num_buttons += 1
+  chrome.storage.local.set({"button_names": button_names, "num_buttons": num_buttons}, result => {
+    console.log("stored")
+  })
+}
+
 //TODO(Mark): put this with a check to the server status 
 //TODO(Mark): have server refresh button that check the server status again
 document.getElementById('changeIcon').addEventListener('click', changeIcon);
@@ -138,3 +208,5 @@ async function loadTabs() {
     status.textContent = 'Error loading tabs. Please try again.';
   }
 }
+
+render();

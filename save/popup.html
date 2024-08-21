@@ -6,15 +6,36 @@
     body { width: 300px; padding: 10px; }
     button { width: 100%; margin-bottom: 10px; }
     #status { margin-top: 10px; }
+    .inner
+    {
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
+  <div id="tag-contanier">
+  </div>
+  <div>
+    <div class="inner">
+      <input type="text" id="tag_input">
+    </div>
+    <div class="inner">
+      <button id="add">add</button>
+    </div>
+  </div>
+  <div>
+    <button id="clear">clear</button>
+  </div>
   <div>
     <button id="changeIcon">change icon</button>
   </div>
   <div>
-    <button id="saveButton">Save Tabs to Server</button>
-    <button id="loadButton">Load Tabs from Server</button>
+    <div class="inner">
+      <button id="saveButton">Save Tabs to Server</button>
+    </div>
+    <div class="inner">
+      <button id="loadButton">Load Tabs from Server</button>
+    </div>
   </div>
   <div id="status"></div>
   <script src="popup.js"></script>
