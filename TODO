@@ -6,6 +6,7 @@
     - handle error
 
 Later
+- convert the chrome test part to support both browsers use const at the top of the file 
 - Get tag load and save working
 - design the layout 
 - add tag removal?
