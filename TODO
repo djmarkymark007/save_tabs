@@ -1,0 +1,14 @@
+- Get the keyboard short cut working
+- Think / Get the server status check function working.  
+- Get save all and load all work
+    - write the data code and go function 
+    - write the js side
+    - handle error
+
+Later
+- Get tag load and save working
+- design the layout 
+- add tag removal?
+
+future
+- add rss handling?
