@@ -7,4 +7,4 @@ CREATE TABLE save_all_tabs(
 );
 
 -- +goose Down
-DROP TABLE save_all;
+DROP TABLE save_all_tabs;

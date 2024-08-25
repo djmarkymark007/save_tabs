@@ -3,8 +3,12 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
+
+	"github.com/joho/godotenv"
 
 	tabs "github.com/djmarkymark007/save_tabs/save_server/internal/save_all_tabs"
+	"github.com/djmarkymark007/save_tabs/save_server/internal/status"
 )
 
 //TODO(Mark): setup github
@@ -19,8 +23,17 @@ import (
 // test on diffrent computer
 
 func main() {
+	godotenv.Load()
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("PORT environment variable is not set")
+	}
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("POST /save-tabs", tabs.PostSaveTabs)
 	mux.HandleFunc("GET /save-tabs", tabs.GetSaveTabs)
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	mux.HandleFunc("GET /status", status.IsAlive)
+
+	server := http.Server{Handler: mux, Addr: ":" + port}
+	log.Fatal(server.ListenAndServe())
 }

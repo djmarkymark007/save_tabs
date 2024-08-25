@@ -1,0 +1,7 @@
+build postgres
+    docker run --name test_postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
+
+
+build the go 
+    docker build -f docker/app/Dockerfile -t tab_server:latest .
+    docker run -p 70:8080 tab_server:latest
