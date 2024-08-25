@@ -6,6 +6,9 @@
     - handle error
 
 Later
+- save the titles
+    - so you have a page that show all blog by title
+    - make it short cut to open that page
 - convert the chrome test part to support both browsers use const at the top of the file 
 - Get tag load and save working
 - design the layout 
@@ -13,3 +16,4 @@ Later
 
 future
 - add rss handling?
+- store blog with out rss and crawl them
