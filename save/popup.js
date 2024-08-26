@@ -26,6 +26,7 @@ function loadTabs() {
 */
 
 
+//TODO(Mark): use this and update the code with a setting wheel or just settings to set the ip of the server. defualt use localhost
 const API_BASE_URL = 'http://localhost/';
 
 document.getElementById('saveButton').addEventListener('click', saveTabs);
@@ -183,7 +184,7 @@ async function loadTabs() {
   const status = document.getElementById('status');
   status.textContent = 'Loading tabs...';
   try {
-    const response = await fetch(`http://localhost:8080/save-tabs`, {
+    const response = await fetch(`http://192.168.254.135:8080/save-tabs`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
