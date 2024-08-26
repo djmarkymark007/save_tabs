@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  app:
+    build:  
+      context: . 
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER_FILE=/run/secrets/db_user
+      - DB_PASSWORD_FILE=/run/secrets/db_password
+      - DB_NAME_FILE=/run/secrets/db_name
+    depends_on:
+      db:
+        condition: service_healthy
+
+    networks:
+      - backend
+    secrets:
+      - db_user
+      - db_password
+      - db_name
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER_FILE=/run/secrets/db_user
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db_password
+      - POSTGRES_DB_FILE=/run/secrets/db_name
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $$(cat $$POSTGRES_DB_FILE) -U $$(cat $$POSTGRES_USER_FILE)"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+    secrets:
+      - db_user
+      - db_password
+      - db_name
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres_data:
+
+secrets:
+  db_user:
+    file: ./secrets/db_user.txt
+  db_password:
+    file: ./secrets/db_password.txt
+  db_name:
+    file: ./secrets/db_name.txt

@@ -1,5 +1,5 @@
 -- +goose Up
-CREATE TABLE tab_tags(
+CREATE TABLE IF NOT EXISTS tab_tags(
     tag_id UUID,
     webpage_id UUID,
     PRIMARY KEY (webpage_id, tag_id),
@@ -8,4 +8,4 @@ CREATE TABLE tab_tags(
 );
 
 -- +goose Down
-DROP TABLE tab_tags;
+DROP TABLE IF EXISTS tab_tags;

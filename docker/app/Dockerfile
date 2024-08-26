@@ -18,7 +18,9 @@ WORKDIR /app
 
 # Copy the binary from the builder stage
 COPY --from=builder /app/main .
+COPY --from=builder /app/save_server/sql/schema ./migrations 
 
+#TODO(mark): do i want to remove this?
 # Expose the port the app runs on
 ENV PORT=8080
 EXPOSE 8080

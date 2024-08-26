@@ -1,5 +1,5 @@
 -- +goose Up
-CREATE TABLE tags(
+CREATE TABLE IF NOT EXISTS tags(
     id UUID PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
@@ -8,4 +8,4 @@ CREATE TABLE tags(
 );
 
 -- +goose Down
-DROP TABLE tags
+DROP TABLE IF EXISTS tags
