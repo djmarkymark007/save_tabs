@@ -1,3 +1,12 @@
+let api;
+
+if (typeof browser !== 'undefined') {
+    api = browser;
+} else if (typeof chrome !== 'undefined') {
+    api = chrome;
+} else {
+    throw new Error('Neither browser nor chrome API is available. This extension cannot run in this environment.');
+}
 /*
 document.getElementById('saveButton').addEventListener('click', saveTabs);
 document.getElementById('loadButton').addEventListener('click', loadTabs);
@@ -38,7 +47,7 @@ let num_buttons = 0;
 function render() {
   // do i like this
   try {
-    chrome.storage.local.get(["button_names", "num_buttons"], result => {
+    api.storage.local.get(["button_names", "num_buttons"], result => {
       console.log(Object.keys(result))
       console.log(Object.keys(result).length)
       if (Object.keys(result).length === 0 && result.constructor === Object) {
@@ -78,7 +87,7 @@ function render() {
 
 document.getElementById("clear").addEventListener('click', clearStorage)
 function clearStorage() {
-  chrome.storage.local.set({"button_names": [], "num_buttons": 0})
+  api.storage.local.set({"button_names": [], "num_buttons": 0})
   button_names = []
   num_buttons = 0
 }
@@ -98,7 +107,7 @@ async function add() {
   div.appendChild(newButton)
   box.appendChild(div)
   num_buttons += 1
-  chrome.storage.local.set({"button_names": button_names, "num_buttons": num_buttons}, result => {
+  api.storage.local.set({"button_names": button_names, "num_buttons": num_buttons}, result => {
     console.log("stored")
   })
 }
@@ -109,7 +118,7 @@ document.getElementById('changeIcon').addEventListener('click', changeIcon);
 let isDefaultIcon = true;
 async function changeIcon() {
   isDefaultIcon = !isDefaultIcon;
-  chrome.action.setIcon({
+  api.action.setIcon({
     path: {
       96: isDefaultIcon ? "assets/ok.png" : "assets/fail.png"
     }
@@ -118,7 +127,6 @@ async function changeIcon() {
 
 async function saveTabs() {
   console.log("starting")
-  const browserAPI = chrome || browser;
   const status = document.getElementById('status');
   status.textContent = 'Saving tabs...';
   
@@ -127,9 +135,9 @@ async function saveTabs() {
     console.log("Starting to save tabs...");
     
     const tabs = await new Promise((resolve, reject) => {
-      browserAPI.tabs.query({}, (tabs) => {
-        if (browserAPI.runtime.lastError) {
-          reject(new Error(browserAPI.runtime.lastError.message));
+      api.tabs.query({}, (tabs) => {
+        if (api.runtime.lastError) {
+          reject(new Error(api.runtime.lastError.message));
         } else {
           resolve(tabs);
         }
@@ -151,7 +159,7 @@ async function saveTabs() {
     status.textContent = 'Tabs saved successfully!';
     */
     console.log("hi")
-    const tabs = await new Promise(resolve => browserAPI.tabs.query({}, resolve));
+    const tabs = await new Promise(resolve => api.tabs.query({}, resolve));
     const tabData = tabs.map(tab => ({
       url: tab.url,
       title: tab.title
@@ -180,7 +188,6 @@ async function saveTabs() {
 }
 
 async function loadTabs() {
-  const browserAPI = chrome || browser;
   const status = document.getElementById('status');
   status.textContent = 'Loading tabs...';
   try {
@@ -198,7 +205,7 @@ async function loadTabs() {
     const result = await response.json();
     if (result.tabs && result.tabs.length > 0) {
       result.tabs.forEach(tab => {
-        browserAPI.tabs.create({ url: tab.url });
+        api.tabs.create({ url: tab.url });
       });
       status.textContent = 'Tabs loaded successfully!';
     } else {
