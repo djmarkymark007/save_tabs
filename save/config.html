@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <title>save config</title>
+    <style>
+        body { width: 300px; padding: 10px; }
+        button { width: 100%; margin-bottom: 10px; }
+        #status { margin-top: 10px; }
+        .inner
+        {
+        display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Config Page</h1>
+    <div>
+        <div class="inner">
+            <h2>Current server IP: </h2>
+        </div>
+        <div class="inner" id="current_server_ip">
+            
+        </div>
+    </div>
+    <div> 
+        <div class="inner">
+            <h2>Server IP</h6>
+        </div>  
+        <div class="inner">
+            <input type="text" id="server_ip">
+        </div>
+    </div>
+    <div>
+        <button id="save_config">Save</button>
+    </div>
+
+    <script src="config.js"></script>
+</body>
+</html>

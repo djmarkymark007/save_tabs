@@ -1,3 +1,8 @@
+convert chrome to api using chrome and firefox
+update popup.js to load config data 
+
+
+
 - Get the keyboard short cut working
 - Think / Get the server status check function working.  
 - Get save all and load all work
