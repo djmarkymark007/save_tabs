@@ -1,14 +1,36 @@
-convert chrome to api using chrome and firefox
 update popup.js to load config data 
+look into move config const to sepreate file because config.js and popup.js need the same ones
+maybe generate the html code for the config.html
+setup the keyboard short cuts
+setup change the keyboard short cuts in the config page. claude has example
+
+write code the handle error from the server / fail to fetch
+    - should update the extision icon
+
+figure out how the ui should display success or failure
+
+think about what functionality should go to which ui panel (access by shortcut or clicking the extision)
+sketch out the ui
+
+think about what need to store for any future fetures or how to rerun the collection proccess to rebuild missing data for the database
+
+look into nginx reverse proxy or go tls
+
+should i make status webpage for the server?
+should i make more detailed webpage showing the data in the database?
+should i make the data by what computer it comes from?
+
+*** If i want to make it product what do i need to do? ***
+    - setup code to support multie user
+    - auth
+    - store webpage plus url
+    - setup strip
+
 
 
 
 - Get the keyboard short cut working
 - Think / Get the server status check function working.  
-- Get save all and load all work
-    - write the data code and go function 
-    - write the js side
-    - handle error
 
 Later
 - save the titles
