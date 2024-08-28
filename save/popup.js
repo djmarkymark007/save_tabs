@@ -7,6 +7,14 @@ if (typeof browser !== 'undefined') {
 } else {
     throw new Error('Neither browser nor chrome API is available. This extension cannot run in this environment.');
 }
+
+import {
+  setting_names,
+  defualt_settings,
+  setting_styles,
+  clear_setting_values
+} from "./settings.js"
+
 /*
 document.getElementById('saveButton').addEventListener('click', saveTabs);
 document.getElementById('loadButton').addEventListener('click', loadTabs);

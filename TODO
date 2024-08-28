@@ -20,12 +20,16 @@ should i make status webpage for the server?
 should i make more detailed webpage showing the data in the database?
 should i make the data by what computer it comes from?
 
+-- maybe try this after the skill finder?
 *** If i want to make it product what do i need to do? ***
     - setup code to support multie user
     - auth
     - store webpage plus url
-    - setup strip
-
+    - setup strip / payment proccessing
+    - put the extesion on firefox & chrome store
+    - setup to allow local store
+    - paid is for cloud store / sync? how would sync work does it need to be store perminatily?
+    - do you allow people to run there own servers? do they pay for the server code?
 
 
 

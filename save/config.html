@@ -7,7 +7,7 @@
         #status { margin-top: 10px; }
         .inner
         {
-        display: inline-block;
+            display: inline-block;
         }
     </style>
 </head>
@@ -51,6 +51,11 @@
     </div>
 
     <div id="clear"></div>
-    <script src="config.js"></script>
+    <div style="text-align: right; margin-top: 20px;">
+        <label for="debug">Debug:</label>
+        <input type="checkbox" id="debug">
+    </div>
+    <script type="module" src="./config.js"></script>
+    <script type="module" src="./settings.js"></script>
 </body>
 </html>
