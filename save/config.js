@@ -68,13 +68,13 @@ function load_settings() {
             add_nodes(defualt_settings, setting_styles)
         }
         else {
-            let keys = Object.keys(result)
             for (let i = 0; i < setting_names.length; i++) {
                 let value = setting_names[i]
                 if (result[value] === "" || result[value] === undefined) {
                     clear_all_add_child_node("current_" + value, defualt_settings[value], setting_styles[i])
+                } else {
+                    clear_all_add_child_node("current_" + value, result[value], setting_styles[i])
                 }
-                clear_all_add_child_node("current_" + value, result[value], setting_styles[i])
             }
         }
     })
