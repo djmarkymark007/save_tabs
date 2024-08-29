@@ -21,7 +21,11 @@ function startDebug() {
         let node = add_child_node("clear", "clear_setting_storage", "button")
         node.addEventListener('click', clear_settings)
     } else {
-        removeAllChildren("clear")
+        //TODO(Mark): if need this code more make function. i think i will need it more
+        let node = document.getElementById("clear")
+        let child = node.firstChild
+        child.removeEventListener("click", clear_settings)
+        node.removeChild(child)
     }
 }
 
