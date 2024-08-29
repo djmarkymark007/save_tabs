@@ -1,5 +1,5 @@
 update popup.js to load config data 
-look into move config const to sepreate file because config.js and popup.js need the same ones
+add the abillity to name the computer / load spefic copter data. plus load mulity computer data
 maybe generate the html code for the config.html
 setup the keyboard short cuts
 setup change the keyboard short cuts in the config page. claude has example
@@ -15,6 +15,8 @@ sketch out the ui
 think about what need to store for any future fetures or how to rerun the collection proccess to rebuild missing data for the database
 
 look into nginx reverse proxy or go tls
+
+use postgressql to search text
 
 should i make status webpage for the server?
 should i make more detailed webpage showing the data in the database?

@@ -2,52 +2,90 @@
 <head>
     <title>save config</title>
     <style>
-        body { width: 300px; padding: 10px; }
-        button { width: 100%; margin-bottom: 10px; }
+        body { 
+            width: 100vw; /* Full width of the viewport */
+            height: 100vh; /* Full height of the viewport */
+            padding: 0; /* Removed padding */
+            margin: 0; /* Remove default margin */
+            box-sizing: border-box; /* Include padding in the width and height */
+            overflow-x: hidden; /* Added to prevent horizontal scrolling */
+        }
+        .header {
+            background-color: #808080;
+            padding: 10px;
+            margin: 0;
+        }
+        h1 {
+            margin: 0;
+            color: white;
+        }
+        button { width: 100px; margin-bottom: 10px; }
         #status { margin-top: 10px; }
         .inner
         {
             display: inline-block;
         }
+        .save-style {
+            padding-top: 20px;
+            padding-left: 20px; /* Add left padding */
+        }
+        .content-wrapper {
+            display: inline-block; /* Adjust width to the largest element inside */
+            margin-left: 0; /* Align the wrapper div to the left */
+            padding: 10px; /* Added padding */
+        }
+        hr {
+            width: 100%; /* Simplified to 100% */
+            margin: 0;
+            padding: 0;
+            border: none;
+            height: 1px;
+            background-color: #000;
+        }
     </style>
 </head>
 <body>
-    <h1>Config Page</h1>
-    <div>
-        <div class="inner">
-            <h2>Current server PORT: </h2>
-        </div>
-        <div class="inner" id="current_server_port">
-            
-        </div>
+    <div class="header">
+        <h1>Config Page</h1>
     </div>
-    <div> 
-        <div class="inner">
-            <h2>Server Port</h6>
-        </div>  
-        <div class="inner">
-            <input type="text" id="server_port">
+    <hr>
+    <div class="content-wrapper">
+        <div>
+            <div class="inner">
+                <h2>Current server PORT: </h2>
+            </div>
+            <div class="inner" id="current_server_port">
+                
+            </div>
         </div>
-    </div>
+        <div> 
+            <div class="inner">
+                <h2>Server Port</h2>
+            </div>  
+            <div class="inner">
+                <input type="text" id="server_port">
+            </div>
+        </div>
 
-    <div>
-        <div class="inner">
-            <h2>Current server IP: </h2>
+        <div>
+            <div class="inner">
+                <h2>Current server IP: </h2>
+            </div>
+            <div class="inner" id="current_server_ip">
+                
+            </div>
         </div>
-        <div class="inner" id="current_server_ip">
-            
+        <div> 
+            <div class="inner">
+                <h2>Server IP</h2>
+            </div>  
+            <div class="inner">
+                <input type="text" id="server_ip">
+            </div>
         </div>
-    </div>
-    <div> 
-        <div class="inner">
-            <h2>Server IP</h6>
-        </div>  
-        <div class="inner">
-            <input type="text" id="server_ip">
+        <div class="save-style">
+            <button id="save_config" style="text-align: center;">Save</button>
         </div>
-    </div>
-    <div>
-        <button id="save_config">Save</button>
     </div>
 
     <div id="clear"></div>
