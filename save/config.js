@@ -39,6 +39,10 @@ function save() {
     for (let i = 0; i < setting_names.length; i++) {
         let setting_name = setting_names[i]
         settings_nodes.push(document.getElementById(setting_name))
+        let setting_value = settings_nodes[i].value
+        if (setting_value === "") {
+            continue
+        }
         settings[setting_name] = settings_nodes[i].value
     }
     api.storage.local.set(settings, result => {
@@ -61,10 +65,10 @@ function load_settings() {
         }
         else {
             let keys = Object.keys(result)
-            for (let i = 0; i < keys.length; i++) {
-                let value = keys[i]
-                if (result[value] === "") {
-                    continue
+            for (let i = 0; i < setting_names.length; i++) {
+                let value = setting_names[i]
+                if (result[value] === "" || result[value] === undefined) {
+                    clear_all_add_child_node("current_" + value, defualt_settings[value], setting_styles[i])
                 }
                 clear_all_add_child_node("current_" + value, result[value], setting_styles[i])
             }
