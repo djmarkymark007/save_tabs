@@ -9,9 +9,10 @@
             margin: 0; /* Remove default margin */
             box-sizing: border-box; /* Include padding in the width and height */
             overflow-x: hidden; /* Added to prevent horizontal scrolling */
+            background-color: #c0c0c0; /* Added background color */
         }
         .header {
-            background-color: #808080;
+            background-color: #404040;
             padding: 10px;
             margin: 0;
         }
@@ -19,7 +20,20 @@
             margin: 0;
             color: white;
         }
-        button { width: 100px; margin-bottom: 10px; }
+        button { 
+            margin-bottom: 10px; 
+            background-color: #404040; /* Match input border color */
+            color: #ffffff; /* White text for contrast */
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .save-button {
+            width: 100px;
+        }
+        button:hover {
+            background-color: #606060; /* Lighter shade on hover */
+        }
         #status { margin-top: 10px; }
         .inner
         {
@@ -30,9 +44,33 @@
             padding-left: 20px; /* Add left padding */
         }
         .content-wrapper {
-            display: inline-block; /* Adjust width to the largest element inside */
-            margin-left: 0; /* Align the wrapper div to the left */
-            padding: 10px; /* Added padding */
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 10px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .label-wrapper {
+            width: 110px; /* Adjust this to accommodate your longest h2 */
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .input-wrapper {
+            width: 200px; /* Fixed width for all inputs */
+        }
+        input[type="text"] {
+            width: 100%; /* Make input full width of its wrapper */
+            background-color: #c0c0c0;
+            border: 1px solid #404040; /* Darker border for contrast */
+            padding: 2px 5px;
+            color: #000000; /* Ensure text is black for readability */
+        }
+        input[type="text"]:focus {
+            outline: 2px solid #606060; /* Darker outline on focus */
         }
         hr {
             width: 100%; /* Simplified to 100% */
@@ -58,11 +96,11 @@
                 
             </div>
         </div>
-        <div> 
-            <div class="inner">
+        <div class="input-group">
+            <div class="label-wrapper">
                 <h2>Server Port</h2>
             </div>  
-            <div class="inner">
+            <div class="input-wrapper">
                 <input type="text" id="server_port">
             </div>
         </div>
@@ -75,16 +113,16 @@
                 
             </div>
         </div>
-        <div> 
-            <div class="inner">
+        <div class="input-group">
+            <div class="label-wrapper">
                 <h2>Server IP</h2>
             </div>  
-            <div class="inner">
+            <div class="input-wrapper">
                 <input type="text" id="server_ip">
             </div>
         </div>
         <div class="save-style">
-            <button id="save_config" style="text-align: center;">Save</button>
+            <button id="save_config" class="save-button" style="text-align: center;">Save</button>
         </div>
     </div>
 
