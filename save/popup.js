@@ -8,14 +8,10 @@ if (typeof browser !== 'undefined') {
     throw new Error('Neither browser nor chrome API is available. This extension cannot run in this environment.');
 }
 
-import {
-  setting_names,
-  defualt_settings,
-  setting_styles,
-  clear_setting_values
-} from "./settings.js"
 
-/*
+/* TODO(Mark): keep this. this is the local version allow switching between local and server
+   should this be default?
+
 document.getElementById('saveButton').addEventListener('click', saveTabs);
 document.getElementById('loadButton').addEventListener('click', loadTabs);
 
@@ -42,9 +38,28 @@ function loadTabs() {
 
 */
 
+import {
+  setting_names,
+  defualt_settings,
+  default_server_ip,
+  default_server_port
+} from "./settings.js"
 
-//TODO(Mark): use this and update the code with a setting wheel or just settings to set the ip of the server. defualt use localhost
-const API_BASE_URL = 'http://localhost/';
+let server_ip = default_server_ip 
+let server_port = default_server_port
+function load_settings() {
+  api.storage.local.get(["server_ip", "server_port"], result => {
+      if (Object.keys(result).length !== 0 || result.constructor === Object) {
+        if (result["server_ip"] !== undefined && result["server_ip"] !== "") {
+          server_ip = result["server_ip"]
+        }
+        if (result["server_port"] !== undefined && result["server_port"] !== "") {
+          server_port = result["server_port"]
+        }
+      }
+  })
+}
+
 
 document.getElementById('saveButton').addEventListener('click', saveTabs);
 document.getElementById('loadButton').addEventListener('click', loadTabs);
@@ -73,12 +88,12 @@ function render() {
 
         num_buttons = result["num_buttons"]
 
-        for (tag_name of result["button_names"]) {
+        for (let tag_name of result["button_names"]) {
           status.textContent = "button"
-          box = document.getElementById('tag-contanier')    
-          div = document.createElement('div')
+          let box = document.getElementById('tag-contanier')    
+          let div = document.createElement('div')
           div.classList.add('inner')
-          newButton = document.createElement('button')
+          let newButton = document.createElement('button')
           newButton.textContent = tag_name 
           div.appendChild(newButton)
           box.appendChild(div)
@@ -105,11 +120,11 @@ document.getElementById('add').addEventListener('click', add);
 
 
 async function add() {
-  box = document.getElementById('tag-contanier')
-  tag_name = document.getElementById("tag_input")
-  div = document.createElement('div')
+  let box = document.getElementById('tag-contanier')
+  let tag_name = document.getElementById("tag_input")
+  let div = document.createElement('div')
   div.classList.add('inner')
-  newButton = document.createElement('button')
+  let newButton = document.createElement('button')
   button_names.push(num_buttons + ') ' + tag_name.value)
   newButton.textContent = num_buttons + ") " + tag_name.value
   div.appendChild(newButton)
@@ -175,7 +190,7 @@ async function saveTabs() {
     
     console.log("wow")
     //const response = await fetch(`${API_BASE_URL}/save-tabs`, {
-    const response = await fetch(`http://localhost:8080/save-tabs`, {
+    const response = await fetch(`http://${server_ip}:${server_port}/save-tabs`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -198,8 +213,13 @@ async function saveTabs() {
 async function loadTabs() {
   const status = document.getElementById('status');
   status.textContent = 'Loading tabs...';
+  console.log(default_server_ip)
+  console.log(default_server_port)
+  console.log(server_ip)
+  console.log(server_port)
+  console.log(`http://${server_ip}:${server_port}/save-tabs`)
   try {
-    const response = await fetch(`http://192.168.254.135:8080/save-tabs`, {
+    const response = await fetch(`http://${server_ip}:${server_port}/save-tabs`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -225,4 +245,6 @@ async function loadTabs() {
   }
 }
 
+load_settings();
 render();
+

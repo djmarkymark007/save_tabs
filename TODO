@@ -23,6 +23,7 @@ should i make the data by what computer it comes from?
 -- maybe try this after the skill finder?
 *** If i want to make it product what do i need to do? ***
     - setup code to support multie user
+    - figure out if local store is ok for storing secrets
     - auth
     - store webpage plus url
     - setup strip / payment proccessing

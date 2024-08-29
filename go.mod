@@ -8,6 +8,6 @@ require (
 )
 
 require (
-	github.com/pkg/errors v0.9.1
-	github.com/pressly/goose v2.7.0+incompatible 
+	github.com/pkg/errors v0.9.1  // indirect
+	github.com/pressly/goose v2.7.0+incompatible
 )
