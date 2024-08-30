@@ -1,4 +1,3 @@
-update popup.js to load config data 
 add the abillity to name the computer / load spefic copter data. plus load mulity computer data
 maybe generate the html code for the config.html
 setup the keyboard short cuts
@@ -34,10 +33,6 @@ should i make the data by what computer it comes from?
     - paid is for cloud store / sync? how would sync work does it need to be store perminatily?
     - do you allow people to run there own servers? do they pay for the server code?
 
-
-
-- Get the keyboard short cut working
-- Think / Get the server status check function working.  
 
 Later
 - save the titles

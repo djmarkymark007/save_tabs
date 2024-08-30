@@ -7,7 +7,7 @@
   "host_permissions": ["<all_urls>"],
   "action": {
     "default_icon": "assets/ok.png",
-    "default_popup": "popup.html"
+    "default_popup": "html/popup.html"
   },
   "browser_specific_settings": {
     "gecko": {

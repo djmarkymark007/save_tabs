@@ -82,8 +82,8 @@ func main() {
 	log.Println("set the config")
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("POST /save-tabs", tabs.PostBrowserState)
-	mux.HandleFunc("GET /save-tabs", tabs.GetLastBrowserState)
+	mux.HandleFunc("POST /v1/save-tabs", tabs.PostBrowserState)
+	mux.HandleFunc("GET /v1/save-tabs", tabs.GetLastBrowserState)
 	mux.HandleFunc("GET /status", status.IsAlive)
 	mux.HandleFunc("/", isOk)
 	log.Println("created mux")

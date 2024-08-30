@@ -1,0 +1,160 @@
+:root {
+    --background: #D9E3F0;
+    --text: #3A4D66;
+    --primary: #6989B3;
+    --secondary: #A7BCDB;
+    --accent: #F7E0C9;
+    --radis: .5em;
+}
+
+body { 
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: var(--background);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.main-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 60px);
+}
+
+.vertical-nav {
+    width: 20%;
+    padding-left: 15px;
+    padding-bottom: 40px;
+    padding-right: 15px;
+    text-align: center;
+}
+
+.vertical-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vertical-nav li {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    background-color: var(--primary);
+    border-radius: var(--radis);
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.vertical-nav a {
+    color: var(--background);
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 5px 0;
+}
+
+.vertical-nav a:hover {
+    text-decoration: underline;
+}
+
+.content-wrapper {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondary);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.header {
+    background-color: var(--primary);
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+}
+
+h1 {
+    margin: 0;
+    padding-left: 5px;
+    color: var(--background);
+}
+
+button { 
+    margin-bottom: 10px; 
+    background-color: var(--primary);
+    color: var(--background);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.save-button {
+    width: 100px;
+    border-radius: var(--radis);
+}
+
+button:hover {
+    background-color: var(--secondary);
+}
+
+#status { margin-top: 10px; }
+
+.inner { display: inline-block; }
+
+.save-style {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 325px;
+    border-radius: var(--radis);
+    background-color: var(--primary);
+}
+
+.label-wrapper {
+    width: 110px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.input-wrapper {
+    width: 200px;
+}
+
+input[type="text"] {
+    width: 100%;
+    background-color: var(--background);
+    border: 1px solid var(--primary);
+    padding: 2px 5px;
+    color: var(--text);
+}
+
+input[type="text"]:focus {
+    outline: 2px solid var(--secondary);
+}
+
+hr {
+    width: 105%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 1px;
+    background-color: var(--text);
+}

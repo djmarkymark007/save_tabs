@@ -8,6 +8,7 @@ if (typeof browser !== 'undefined') {
     throw new Error('Neither browser nor chrome API is available. This extension cannot run in this environment.');
 }
 
+const version = "v1"
 
 /* TODO(Mark): keep this. this is the local version allow switching between local and server
    should this be default?
@@ -143,7 +144,7 @@ async function changeIcon() {
   isDefaultIcon = !isDefaultIcon;
   api.action.setIcon({
     path: {
-      96: isDefaultIcon ? "assets/ok.png" : "assets/fail.png"
+      96: isDefaultIcon ? "../assets/ok.png" : "../assets/fail.png"
     }
   });
 };
@@ -189,8 +190,7 @@ async function saveTabs() {
     }));
     
     console.log("wow")
-    //const response = await fetch(`${API_BASE_URL}/save-tabs`, {
-    const response = await fetch(`http://${server_ip}:${server_port}/save-tabs`, {
+    const response = await fetch(`http://${server_ip}:${server_port}/${version}/save-tabs`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -219,7 +219,7 @@ async function loadTabs() {
   console.log(server_port)
   console.log(`http://${server_ip}:${server_port}/save-tabs`)
   try {
-    const response = await fetch(`http://${server_ip}:${server_port}/save-tabs`, {
+    const response = await fetch(`http://${server_ip}:${server_port}/${version}/save-tabs`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

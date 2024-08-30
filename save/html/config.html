@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <title>save config</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Config Page</h1>
+    </div>
+    <hr>
+    <div class="main-container">
+        <nav class="vertical-nav">
+            <ul>
+                <li><a href="#config">Server Settings</a></li>
+                <li><a href="#settings">Keyboard Shortcuts</a></li>
+                <li><a href="#search">Search</a></li>
+                <li><a href="#display">Display</a></li>
+                <li><a href="#about">Logs</a></li>
+                <!-- Add more navigation items as needed -->
+            </ul>
+        </nav>
+        <div class="content-wrapper">
+            <div>
+                <div class="inner">
+                    <h2>Current Server PORT: </h2>
+                </div>
+                <div class="inner" id="current_server_port">
+                    
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="label-wrapper">
+                    <h2>Server Port</h2>
+                </div>  
+                <div class="input-wrapper">
+                    <input type="text" id="server_port">
+                </div>
+            </div>
+
+            <div>
+                <div class="inner">
+                    <h2>Current Server IP: </h2>
+                </div>
+                <div class="inner" id="current_server_ip">
+                    
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="label-wrapper">
+                    <h2>Server IP</h2>
+                </div>  
+                <div class="input-wrapper">
+                    <input type="text" id="server_ip">
+                </div>
+            </div>
+            <div>
+                <div class="inner">
+                    <h2>Current PC Name: </h2>
+                </div>
+                <div class="inner" id="current_pc_name">
+                    
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="label-wrapper">
+                    <h2>PC Name</h2>
+                </div>  
+                <div class="input-wrapper">
+                    <input type="text" id="pc_name">
+                </div>
+            </div>
+
+            <div class="save-style">
+                <button id="save_config" class="save-button">Save</button>
+            </div>
+        </div>
+    </div>
+    <div id="clear"></div>
+    <div style="text-align: right; margin-top: 20px;">
+        <label for="debug">Debug:</label>
+        <input type="checkbox" id="debug">
+    </div>
+    <script type="module" src="../js/config.js"></script>
+    <script type="module" src="../js/settings.js"></script>
+</body>
+</html>
