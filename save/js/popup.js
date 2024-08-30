@@ -10,13 +10,13 @@ if (typeof browser !== 'undefined') {
 
 const version = "v1"
 
-/* TODO(Mark): keep this. this is the local version allow switching between local and server
-   should this be default?
 
-document.getElementById('saveButton').addEventListener('click', saveTabs);
-document.getElementById('loadButton').addEventListener('click', loadTabs);
+//TODO(Mark): clean this up. not sure if this is how i want it to work
 
-function saveTabs() {
+document.getElementById('saveButtonlocal').addEventListener('click', localsaveTabs);
+document.getElementById('loadButtonlocal').addEventListener('click', localloadTabs);
+
+function localsaveTabs() {
   const browserAPI = chrome || browser;
   browserAPI.tabs.query({}, function(tabs) {
     const urls = tabs.map(tab => tab.url);
@@ -26,7 +26,7 @@ function saveTabs() {
   });
 }
 
-function loadTabs() {
+function localloadTabs() {
   const browserAPI = chrome || browser;
   browserAPI.storage.local.get(['savedTabs'], function(result) {
     if (result.savedTabs) {
@@ -36,8 +36,7 @@ function loadTabs() {
     }
   });
 }
-
-*/
+// ------
 
 import {
   setting_names,
@@ -67,6 +66,17 @@ document.getElementById('loadButton').addEventListener('click', loadTabs);
 
 let button_names = [];
 let num_buttons = 0;
+
+//TODO(Mark): pull out the code to create button tag and id to so you can remove it
+//TODO(Mark): add function to remove tag 
+//TODO(Mark): add del tag button
+
+//TODO(Mark): add local save. 
+  // how should this work automatic? or button to sync
+
+// TODO(Mark): use this code to remove listener
+// should this even be need if have server save and local save?
+// document.getElementById('loadButton').removeEventListener('click', loadTabs);
 
 function render() {
   // do i like this
@@ -126,8 +136,8 @@ async function add() {
   let div = document.createElement('div')
   div.classList.add('inner')
   let newButton = document.createElement('button')
-  button_names.push(num_buttons + ') ' + tag_name.value)
-  newButton.textContent = num_buttons + ") " + tag_name.value
+  button_names.push(num_buttons + ' | ' + tag_name.value)
+  newButton.textContent = num_buttons + " | " + tag_name.value
   div.appendChild(newButton)
   box.appendChild(div)
   num_buttons += 1

@@ -4,18 +4,24 @@
   <title>Tab Manager</title>
   <style>
     body { width: 300px; padding: 10px; }
-    button { width: 100%; margin-bottom: 10px; }
+    button { width: auto; margin-bottom: 10px; margin-right: 5px;}
     #status { margin-top: 10px; }
     .inner
     {
-      display: inline-block;
+      display: inline;
+    }
+    .button-contanier {
+      display: inline;
     }
   </style>
 </head>
 <body>
-  <div id="tag-contanier">
+  <div id="tag-contanier" class="button-contanier">
   </div>
   <div>
+    <div class="inner">
+      <button id="del">del</button>
+    </div>
     <div class="inner">
       <input type="text" id="tag_input">
     </div>
@@ -31,10 +37,18 @@
   </div>
   <div>
     <div class="inner">
-      <button id="saveButton">Save Tabs to Server</button>
+      <button id="saveButton">Server Save Tabs</button>
     </div>
     <div class="inner">
-      <button id="loadButton">Load Tabs from Server</button>
+      <button id="loadButton">Server Load Tabs</button>
+    </div>
+  </div>
+  <div>
+    <div class="inner">
+      <button id="saveButtonlocal">Local Save Tabs</button>
+    </div>
+    <div class="inner">
+      <button id="loadButtonlocal">Local Load Tabs</button>
     </div>
   </div>
   <div id="status"></div>
