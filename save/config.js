@@ -115,4 +115,11 @@ function clear_settings() {
     load_settings()
 }
 
+document.addEventListener('keydown', function(event) {
+  if (event.key === '1') {
+    console.log('The "1" key was pressed');
+    // Add your desired action here
+  }
+});
+
 load_settings()
