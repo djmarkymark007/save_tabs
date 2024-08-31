@@ -150,8 +150,8 @@ async function add() {
 //TODO(Mark): have server refresh button that check the server status again
 document.getElementById('changeIcon').addEventListener('click', changeIcon);
 let isDefaultIcon = true;
-async function changeIcon() {
-  isDefaultIcon = !isDefaultIcon;
+async function changeIcon(status) {
+  isDefaultIcon = status;
   api.action.setIcon({
     path: {
       96: isDefaultIcon ? "../assets/ok.png" : "../assets/fail.png"
@@ -220,27 +220,33 @@ async function saveTabs() {
   }
 }
 
+
 async function loadTabs() {
   const status = document.getElementById('status');
   status.textContent = 'Loading tabs...';
-  console.log(default_server_ip)
-  console.log(default_server_port)
-  console.log(server_ip)
-  console.log(server_port)
-  console.log(`http://${server_ip}:${server_port}/save-tabs`)
+  
   try {
-    const response = await fetch(`http://${server_ip}:${server_port}/${version}/save-tabs`, {
+    const site = `http://${server_ip}:${server_port}/${version}/save-tabs`;
+    console.log('Attempting to fetch from:', site);
+
+    const response = await fetch(site, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
+      mode: 'no-cors',
     });
     
+    console.log('Fetch completed. Response status:', response.status);
+    console.log('Response headers:', JSON.stringify([...response.headers]));
+
     if (!response.ok) {
-      throw new Error('Server response was not ok.');
+      throw new Error(`Server response was not ok. Status: ${response.status}`);
     }
     
     const result = await response.json();
+    console.log('Response body:', JSON.stringify(result));
+
     if (result.tabs && result.tabs.length > 0) {
       result.tabs.forEach(tab => {
         api.tabs.create({ url: tab.url });
@@ -251,9 +257,35 @@ async function loadTabs() {
     }
   } catch (error) {
     console.error('Error loading tabs:', error);
-    status.textContent = 'Error loading tabs. Please try again.';
+    if (error.name === 'TypeError' && error.message.includes('NetworkError')) {
+      status.textContent = `Connection refused. Please check if the server is running and the IP/port are correct.`;
+    } else {
+      status.textContent = `Error loading tabs: ${error.message}. Please try again.`;
+    }
   }
 }
+
+function checkServerStatus() {
+  const site = `http://${server_ip}:${server_port}/${version}/status`;
+  fetch(site, { method: 'GET' })
+    .then(response => {
+      if (response.ok) {
+        console.log('Server is reachable');
+        changeIcon(true);
+      } else {
+        console.log('Server is not responding correctly');
+        changeIcon(false);
+      }
+    })
+    .catch(error => {
+      console.log('Server is unreachable:', error);
+      changeIcon(false);
+    });
+}
+
+
+// Call this function when the popup is opened
+document.addEventListener('DOMContentLoaded', checkServerStatus);
 
 load_settings();
 render();

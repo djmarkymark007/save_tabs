@@ -11,5 +11,8 @@
   },
   "icons": {
     "96": "assets/ok.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; connect-src http://192.168.254.146:8080"
   }
 }

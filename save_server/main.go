@@ -50,6 +50,29 @@ func isOk(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("ok"))
 }
 
+func enableCORS(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("Received request from origin: %s", r.Header.Get("Origin"))
+		log.Printf("Request method: %s", r.Method)
+		log.Printf("Request headers: %v", r.Header)
+
+		// Set CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "*") // Allow any origin
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// Handle preflight requests
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		// Call the next handler
+		next.ServeHTTP(w, r)
+	}
+}
+
 func main() {
 
 	dbUser := readSecret(os.Getenv("DB_USER_FILE"))
@@ -82,9 +105,9 @@ func main() {
 	log.Println("set the config")
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("POST /v1/save-tabs", tabs.PostBrowserState)
-	mux.HandleFunc("GET /v1/save-tabs", tabs.GetLastBrowserState)
-	mux.HandleFunc("GET /status", status.IsAlive)
+	mux.HandleFunc("POST /v1/save-tabs", enableCORS(tabs.PostBrowserState))
+	mux.HandleFunc("GET /v1/save-tabs", enableCORS(tabs.GetLastBrowserState))
+	mux.HandleFunc("/v1/status", enableCORS(status.IsAlive)) // Update this line
 	mux.HandleFunc("/", isOk)
 	log.Println("created mux")
 
