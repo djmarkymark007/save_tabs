@@ -13,6 +13,9 @@ RUN go build -o main ./save_server
 # Use a minimal Alpine image for the final container
 FROM alpine:latest
 
+# Install wget for health checks
+RUN apk add --no-cache wget
+
 # Set the working directory
 WORKDIR /app
 

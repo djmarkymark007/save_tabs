@@ -212,8 +212,10 @@ async function saveTabs() {
       throw new Error('Server response was not ok.');
     }
     
+    /*
     const result = await response.json();
     status.textContent = `Tabs saved successfully! ID: ${result.id}`;
+    */
   } catch (error) {
     console.error('Error saving tabs:', error);
     status.textContent = 'Error saving tabs. Please try again.';
